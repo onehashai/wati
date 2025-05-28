@@ -1,10 +1,14 @@
+const APP_TITLE = "Wati";
+
 frappe.ui.form.on("Notification", {
   refresh: function (frm) {
     frm.events.setup_whatsapp_template(frm);
   },
 
   channel: function (frm) {
-    frm.events.setup_whatsapp_template(frm);
+    if (frm.doc.custom_whatsapp_app === APP_TITLE) {
+      frm.events.setup_whatsapp_template(frm);
+    }
   },
 
   whatsapp_template: function (frm) {
@@ -83,7 +87,7 @@ frappe.ui.form.on("Notification", {
             },
             () => {
               // action to perform if No is selected
-            }
+            },
           );
         }
       },
@@ -102,7 +106,7 @@ frappe.ui.form.on("Notification", {
           if (counter == 1) {
             cur_frm.broadcast_name = data.broadcast_name;
             const elements = document.getElementsByClassName(
-              "modal-body ui-front"
+              "modal-body ui-front",
             );
             Array.from(elements).forEach((element) => {
               element.addEventListener("click", function () {
@@ -111,7 +115,7 @@ frappe.ui.form.on("Notification", {
                   cur_frm.dialog_context,
                   cur_frm.dialog_data,
                   cur_frm.dialog_header_html,
-                  cur_frm.data_dict
+                  cur_frm.data_dict,
                 );
               });
             });
@@ -200,7 +204,7 @@ frappe.ui.form.on("Notification", {
                   cur_frm.dialog_context,
                   cur_frm.dialog_data,
                   cur_frm.dialog_header_html,
-                  cur_frm.data_dict
+                  cur_frm.data_dict,
                 );
               };
             });
@@ -219,7 +223,7 @@ frappe.ui.form.on("Notification", {
               `<div class="card mb-3 h-100"><div class="card-body">` +
                 header_html +
                 data.message_body +
-                `<br><br></div></div>`
+                `<br><br></div></div>`,
             );
 
             cur_frm.dialog_d = d;
@@ -238,7 +242,10 @@ frappe.ui.form.on("Notification", {
   setup_whatsapp_template: function (frm) {
     let template = "";
     let total_html = "";
-    if (frm.doc.channel === "WhatsApp") {
+    if (
+      frm.doc.channel === "WhatsApp" &&
+      frm.doc.custom_whatsapp_app === APP_TITLE
+    ) {
       if (frm.doc.whatsapp_template != undefined) {
         frappe.db
           .get_doc("WhatsApp Template", frm.doc.whatsapp_template)
@@ -353,7 +360,7 @@ function verify(d, context, data, header_html, data_dict) {
     `<div class="card mb-3 h-100"><div class="card-body">` +
       header_html +
       data.message_body +
-      `<br><br></div></div>`
+      `<br><br></div></div>`,
   );
   d.get_primary_btn()[0].disabled = false;
 }

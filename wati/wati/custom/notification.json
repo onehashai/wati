@@ -13,7 +13,7 @@
       "columns": 0,
       "creation": "2023-10-30 14:53:08.679245",
       "default": null,
-      "depends_on": "eval: doc.channel == \"WhatsApp\"",
+      "depends_on": "eval: (doc.channel == \"WhatsApp\") && (doc.custom_whatsapp_app == \"Wati\")",
       "description": null,
       "docstatus": 0,
       "dt": "Notification",
@@ -74,7 +74,7 @@
       "columns": 0,
       "creation": "2023-10-30 14:57:51.558169",
       "default": null,
-      "depends_on": "eval: doc.channel==='WhatsApp'",
+      "depends_on": "eval: (doc.channel == \"WhatsApp\") && (doc.custom_whatsapp_app == \"Wati\")",
       "description": "To use WhatsApp Wati.io service, select a pre-approved template.",
       "docstatus": 0,
       "dt": "Notification",
@@ -98,7 +98,7 @@
       "is_virtual": 0,
       "label": "WhatsApp Template",
       "length": 0,
-      "mandatory_depends_on": "eval: doc.channel==='WhatsApp'",
+      "mandatory_depends_on": "eval: (doc.channel == \"WhatsApp\") && (doc.custom_whatsapp_app == \"Wati\")",
       "modified": "2023-10-30 14:57:51.558169",
       "modified_by": "Administrator",
       "module": "Wati",
@@ -135,7 +135,7 @@
       "columns": 0,
       "creation": "2023-10-30 14:59:19.489411",
       "default": null,
-      "depends_on": "eval: doc.channel == \"WhatsApp\"",
+      "depends_on": "eval: (doc.channel == \"WhatsApp\") && (doc.custom_whatsapp_app == \"Wati\")",
       "description": null,
       "docstatus": 0,
       "dt": "Notification",
@@ -190,4 +190,3 @@
   "property_setters": [],
   "sync_on_migrate": 1
 }
-
